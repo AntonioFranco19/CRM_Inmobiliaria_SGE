@@ -1,0 +1,8 @@
+D:\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\2º\Sistemas de gestión empresarial\CRM_Inmobiliaria_SGE\CRM_Inmobiliaria_SGE\obj\Debug\net10.0\CRM_Inmobiliaria_SGE.csproj.AssemblyReference.cache
+D:\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\2º\Sistemas de gestión empresarial\CRM_Inmobiliaria_SGE\CRM_Inmobiliaria_SGE\obj\Debug\net10.0\Avalonia\Resources.Inputs.cache
+D:\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\2º\Sistemas de gestión empresarial\CRM_Inmobiliaria_SGE\CRM_Inmobiliaria_SGE\obj\Debug\net10.0\Avalonia\resources
+D:\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\2º\Sistemas de gestión empresarial\CRM_Inmobiliaria_SGE\CRM_Inmobiliaria_SGE\obj\Debug\net10.0\CRM_Inmobiliaria_SGE.GeneratedMSBuildEditorConfig.editorconfig
+D:\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\2º\Sistemas de gestión empresarial\CRM_Inmobiliaria_SGE\CRM_Inmobiliaria_SGE\obj\Debug\net10.0\CRM_Inmobiliaria_SGE.AssemblyInfoInputs.cache
+D:\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\2º\Sistemas de gestión empresarial\CRM_Inmobiliaria_SGE\CRM_Inmobiliaria_SGE\obj\Debug\net10.0\CRM_Inmobiliaria_SGE.AssemblyInfo.cs
+D:\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\2º\Sistemas de gestión empresarial\CRM_Inmobiliaria_SGE\CRM_Inmobiliaria_SGE\obj\Debug\net10.0\CRM_Inmobiliaria_SGE.csproj.CoreCompileInputs.cache
+D:\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\2º\Sistemas de gestión empresarial\CRM_Inmobiliaria_SGE\CRM_Inmobiliaria_SGE\obj\Debug\net10.0\CRM_Inmobiliaria_SGE.sourcelink.json
