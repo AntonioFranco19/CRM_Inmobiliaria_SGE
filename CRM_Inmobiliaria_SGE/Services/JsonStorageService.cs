@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using CRM_Inmobiliaria_SGE.Data;
 using CRM_Inmobiliaria_SGE.Models;
+using CRM_Inmobiliaria_SGE.Interfaces;
 
 
 namespace CRM_Inmobiliaria_SGE.Services;

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CRM_Inmobiliaria_SGE.Data;
 using CRM_Inmobiliaria_SGE.Models;
+using CRM_Inmobiliaria_SGE.Interfaces;
 
 namespace InmoCRM.Services;
 
