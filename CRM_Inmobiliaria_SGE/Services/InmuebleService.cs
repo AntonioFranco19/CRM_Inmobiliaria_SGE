@@ -4,30 +4,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using InmoCRM.Data;
-using InmoCRM.Models;
-using InmoCRM.Models.Enums;
+using CRM_Inmobiliaria_SGE.Data;
+using CRM_Inmobiliaria_SGE.Models;
 
 namespace InmoCRM.Services;
 
-public class InmuebleService
+public class InmuebleService : IInmuebleService
 {
-    private readonly InmoDbContext _context;
+    private readonly IJsonStorageService _storageService;
 
-    public InmuebleService(InmoDbContext context)
+    public InmuebleService(IJsonStorageService storageService)
     {
-        _context = context;
+        _storageService = storageService;
     }
 
     public async Task<List<Inmueble>> ObtenerTodosAsync(string? filtroTexto = null, EstadoInmueble? estado = null)
     {
-        var query = _context.Inmuebles.AsQueryable();
+        var db = await _storageService.LoadDataAsync();
+        var query = db.Inmuebles.AsEnumerable();
 
         if (!string.IsNullOrWhiteSpace(filtroTexto))
         {
-            query = query.Where(i => i.Titulo.ToLower().Contains(filtroTexto.ToLower()) ||
-                                     i.Referencia.ToLower().Contains(filtroTexto.ToLower()) ||
-                                     i.Ciudad.ToLower().Contains(filtroTexto.ToLower()));
+            var texto = filtroTexto.Trim().ToLowerInvariant();
+            query = query.Where(i =>
+                i.Titulo.ToLowerInvariant().Contains(texto) ||
+                i.Referencia.ToLowerInvariant().Contains(texto) ||
+                i.Ciudad.ToLowerInvariant().Contains(texto));
         }
 
         if (estado.HasValue)
@@ -35,39 +37,42 @@ public class InmuebleService
             query = query.Where(i => i.Estado == estado.Value);
         }
 
-        return await query.OrderByDescending(i => i.FechaAlta).ToListAsync();
+        return query.OrderByDescending(i => i.FechaAlta).ToList();
     }
 
     public async Task GuardarAsync(Inmueble inmueble)
     {
-        var existe = await _context.Inmuebles.AnyAsync(i => i.Id == inmueble.Id);
-        if (existe)
+        var db = await _storageService.LoadDataAsync();
+        var index = db.Inmuebles.FindIndex(i => i.Id == inmueble.Id);
+
+        if (index >= 0)
         {
-            _context.Inmuebles.Update(inmueble);
+            db.Inmuebles[index] = inmueble;
         }
         else
         {
-            await _context.Inmuebles.AddAsync(inmueble);
+            db.Inmuebles.Add(inmueble);
         }
-        await _context.SaveChangesAsync();
+
+        await _storageService.SaveDataAsync(db);
     }
 
     public async Task EliminarAsync(Guid id)
     {
-        var inmueble = await _context.Inmuebles.FindAsync(id);
+        var db = await _storageService.LoadDataAsync();
+        var inmueble = db.Inmuebles.FirstOrDefault(i => i.Id == id);
+
         if (inmueble != null)
         {
-            _context.Inmuebles.Remove(inmueble);
-            await _context.SaveChangesAsync();
+            db.Inmuebles.Remove(inmueble);
+            await _storageService.SaveDataAsync(db);
         }
     }
 
-    /// <summary>
-    /// Funcionalidad 4.2: Motor de cruce entre demandas del cliente y catálogo disponible
-    /// </summary>
     public async Task<List<Inmueble>> ObtenerCoincidenciasParaClienteAsync(Cliente cliente)
     {
-        var query = _context.Inmuebles.Where(i => i.Estado == EstadoInmueble.Disponible);
+        var db = await _storageService.LoadDataAsync();
+        var query = db.Inmuebles.Where(i => i.Estado == EstadoInmueble.Disponible);
 
         if (cliente.PresupuestoMaximo > 0)
         {
@@ -86,9 +91,10 @@ public class InmuebleService
 
         if (!string.IsNullOrWhiteSpace(cliente.ZonaInteres))
         {
-            query = query.Where(i => i.Ciudad.ToLower().Contains(cliente.ZonaInteres.ToLower()));
+            var zona = cliente.ZonaInteres.Trim().ToLowerInvariant();
+            query = query.Where(i => i.Ciudad.ToLowerInvariant().Contains(zona));
         }
 
-        return await query.ToListAsync();
+        return query.ToList();
     }
 }

@@ -1,6 +1,6 @@
 using System;
 
-namespace InmoCRM.Models;
+namespace CRM_Inmobiliaria_SGE.Models;
 
 public class Proveedor
 {

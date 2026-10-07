@@ -2,27 +2,29 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using InmoCRM.Data;
-using InmoCRM.Models;
+using CRM_Inmobiliaria_SGE.Models;
+using System.Linq;
 
 namespace InmoCRM.Services;
 
-public class AuthService
+public class AuthService : IAuthService
 {
-    private readonly InmoDbContext _context;
+    private readonly IJsonStorageService _storageService;
     public Usuario? UsuarioActual { get; private set; }
 
     public event Action? SesionCambiada;
 
-    public AuthService(InmoDbContext context)
+    public AuthService(IJsonStorageService storageService)
     {
-        _context = context;
+        _storageService = storageService;
     }
 
     public async Task<bool> IniciarSesionAsync(string username, string password)
     {
-        var user = await _context.Usuarios
-            .FirstOrDefaultAsync(u => u.Username == username && u.Activo);
+        var db = await _storageService.LoadDataAsync();
+        var user = db.Usuarios.FirstOrDefault(u =>
+            u.Username.Equals(username, StringComparison.OrdinalIgnoreCase) &&
+            u.Activo);
 
         if (user == null || user.PasswordHash != password)
         {

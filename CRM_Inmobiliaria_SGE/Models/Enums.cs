@@ -1,5 +1,5 @@
 // Models/Enums/RolUsuario.cs
-namespace InmoCRM.Models.Enums;
+namespace CRM_Inmobiliaria_SGE.Models;
 
 public enum RolUsuario
 {

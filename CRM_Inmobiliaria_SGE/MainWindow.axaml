@@ -1,9 +1,39 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="CRM_Inmobiliaria_SGE.MainWindow"
-        Title="CRM_Inmobiliaria_SGE">
-    Welcome to Avalonia!
+        Title="InmoCRM - Panel Principal"
+        Width="1100" Height="700"
+        x:Class="InmoCRM.MainWindow"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid ColumnDefinitions="220,*">
+        <!-- Menú Lateral -->
+        <Border Grid.Column="0" Background="#1E293B" Padding="15">
+            <DockPanel LastChildFill="False">
+                <StackPanel DockPanel.Dock="Top" Spacing="10">
+                    <TextBlock Text="InmoCRM" Foreground="White" FontSize="20" FontWeight="Bold"/>
+                    <TextBlock x:Name="TxtInfoUsuario" Foreground="#94A3B8" FontSize="12" Margin="0,0,0,15"/>
+
+                    <Button Content="🏡 Inmuebles" Click="OnMenuInmueblesClick" HorizontalAlignment="Stretch" Height="36"/>
+                    <Button Content="👥 Clientes" Click="OnMenuClientesClick" HorizontalAlignment="Stretch" Height="36"/>
+                    <Button Content="📅 Visitas" Click="OnMenuVisitasClick" HorizontalAlignment="Stretch" Height="36"/>
+                    <Button Content="🎯 Cruce / Matching" Click="OnMenuMatchingClick" HorizontalAlignment="Stretch" Height="36"/>
+                    <Button Content="🤝 Ventas / Operaciones" Click="OnMenuVentasClick" HorizontalAlignment="Stretch" Height="36"/>
+                    <Button Content="🚚 Proveedores" Click="OnMenuProveedoresClick" HorizontalAlignment="Stretch" Height="36"/>
+
+                    <!-- Botones restringidos a Administrador -->
+                    <Button x:Name="BtnFacturacion" Content="🧾 Facturación" Click="OnMenuFacturacionClick" HorizontalAlignment="Stretch" Height="36"/>
+                    <Button x:Name="BtnInformes" Content="📊 Informes" Click="OnMenuInformesClick" HorizontalAlignment="Stretch" Height="36"/>
+                    <Button x:Name="BtnUsuarios" Content="⚙️ Usuarios" Click="OnMenuUsuariosClick" HorizontalAlignment="Stretch" Height="36"/>
+                </StackPanel>
+
+                <Button DockPanel.Dock="Bottom" Content="Cerrar Sesión" Click="OnCerrarSesionClick" 
+                        Background="#EF4444" Foreground="White" HorizontalAlignment="Stretch" Height="36"/>
+            </DockPanel>
+        </Border>
+
+        <!-- Área de contenido dinámico -->
+        <Border Grid.Column="1" Background="#F8FAFC" Padding="20">
+            <ContentControl x:Name="ContenedorModulo"/>
+        </Border>
+    </Grid>
 </Window>

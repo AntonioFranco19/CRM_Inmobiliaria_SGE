@@ -1,7 +1,6 @@
 // Models/Visita.cs
 using System;
-
-namespace InmoCRM.Models;
+namespace CRM_Inmobiliaria_SGE.Models;
 
 public class Visita
 {

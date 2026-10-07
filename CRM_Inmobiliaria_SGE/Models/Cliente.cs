@@ -1,8 +1,8 @@
 // Models/Cliente.cs
 using System;
-using InmoCRM.Models.Enums;
+using CRM_Inmobiliaria_SGE.Models;
 
-namespace InmoCRM.Models;
+namespace CRM_Inmobiliaria_SGE.Models;
 
 public class Cliente
 {

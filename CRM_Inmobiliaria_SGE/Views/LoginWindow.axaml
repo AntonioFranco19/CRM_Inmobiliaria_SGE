@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="CRM_Inmobiliaria_SGE.Views.LoginWindow"
+        Title="InmoCRM - Acceso"
+        Width="380" Height="420"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False">
+
+    <Border Padding="25" Background="#F1F5F9">
+        <StackPanel Spacing="14" VerticalAlignment="Center">
+            <TextBlock Text="InmoCRM" 
+                       FontSize="26" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Center" 
+                       Foreground="#0F172A"/>
+
+            <TextBlock Text="Iniciar Sesión" 
+                       FontSize="14" 
+                       Foreground="#64748B" 
+                       HorizontalAlignment="Center"/>
+
+            <StackPanel Spacing="4">
+                <TextBlock Text="Usuario:" FontWeight="Medium"/>
+                <TextBox x:Name="TxtUsuario" Watermark="admin / agente"/>
+            </StackPanel>
+
+            <StackPanel Spacing="4">
+                <TextBlock Text="Contraseña:" FontWeight="Medium"/>
+                <TextBox x:Name="TxtPassword" PasswordChar="•" Watermark="Contraseña"/>
+            </StackPanel>
+
+            <TextBlock x:Name="TxtError" 
+                       Foreground="#DC2626" 
+                       FontSize="12" 
+                       IsVisible="False" 
+                       TextWrapping="Wrap"/>
+
+            <Button Content="Entrar" 
+                    Click="OnLoginClick" 
+                    HorizontalAlignment="Stretch" 
+                    HorizontalContentAlignment="Center"
+                    Height="38" 
+                    Background="#2563EB" 
+                    Foreground="White" 
+                    FontWeight="Bold"
+                    Margin="0,8,0,0"/>
+        </StackPanel>
+    </Border>
+</Window>
