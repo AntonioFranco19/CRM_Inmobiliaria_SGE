@@ -1,0 +1,98 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="CRM_Inmobiliaria_SGE.Views.InmueblesView">
+
+    <Grid RowDefinitions="Auto,*,Auto" Margin="10">
+        
+        <!-- Barra Superior: Título y Buscador -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto,Auto" Margin="0,0,0,15">
+            <TextBlock Grid.Column="0" Text="Catálogo de Inmuebles" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+            
+            <TextBox x:Name="TxtBuscar" Grid.Column="1" Margin="20,0,10,0" 
+                     Watermark="Buscar por referencia, título o ciudad..." 
+                     KeyUp="OnBuscarKeyUp"/>
+            
+            <Button Grid.Column="2" Content="Buscar" Click="OnBuscarClick" Margin="0,0,10,0"/>
+            <Button Grid.Column="3" Content="+ Nuevo Inmueble" Click="OnNuevoClick" Background="#16A34A" Foreground="White" FontWeight="Bold"/>
+        </Grid>
+
+        <!-- Listado Principal (ListBox con DataTemplate sin ViewModel) -->
+        <Border Grid.Row="1" Background="White" CornerRadius="6" BorderBrush="#E2E8F0" BorderThickness="1">
+            <ListBox x:Name="ListaInmuebles" SelectionChanged="OnInmuebleSeleccionadoChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" BorderBrush="#E2E8F0" BorderThickness="0,0,0,1">
+                            <Grid ColumnDefinitions="90,2*,*,Auto,Auto">
+                                <TextBlock Grid.Column="0" Text="{Binding Referencia}" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Titulo}" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Ciudad}" FontSize="12" Foreground="#64748B"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Tipo}" FontSize="12" Foreground="#475569"/>
+                                    <TextBlock Text="{Binding Estado}" FontWeight="Medium" Foreground="#2563EB"/>
+                                </StackPanel>
+                                <TextBlock Grid.Column="3" Text="{Binding Precio, StringFormat='{}{0:N0} €'}" FontWeight="Bold" FontSize="15" VerticalAlignment="Center" Margin="10,0,20,0"/>
+                                <StackPanel Grid.Column="4" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center">
+                                    <Button Content="Eliminar" Click="OnEliminarInmuebleClick" Background="#EF4444" Foreground="White"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <!-- Formulario Inferior: Edición / Creación Rápida -->
+        <Border Grid.Row="2" Background="#FFB7E0F8" Margin="0,15,0,0" Padding="15" CornerRadius="6" BorderBrush="#CBD5E1" BorderThickness="1">
+            <StackPanel Spacing="10">
+                <TextBlock x:Name="TxtTituloFormulario" Text="Añadir / Editar Inmueble" FontWeight="Bold" FontSize="16"/>
+
+                <Grid ColumnDefinitions="*,2*,*,*" RowDefinitions="Auto,Auto" Margin="0,5,0,0">
+                    <!-- Fila 1 -->
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,10,10">
+                        <TextBlock Text="Referencia:" FontSize="12"/>
+                        <TextBox x:Name="TxtReferencia" Watermark="INM-003"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,10,10">
+                        <TextBlock Text="Título:" FontSize="12"/>
+                        <TextBox x:Name="TxtTitulo" Watermark="Descripción breve..."/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="2" Margin="0,0,10,10">
+                        <TextBlock Text="Tipo:" FontSize="12"/>
+                        <ComboBox x:Name="CmbTipo" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="3" Margin="0,0,0,10">
+                        <TextBlock Text="Estado:" FontSize="12"/>
+                        <ComboBox x:Name="CmbEstado" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <!-- Fila 2 -->
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,10,0">
+                        <TextBlock Text="Precio (€):" FontSize="12"/>
+                        <TextBox x:Name="TxtPrecio" Watermark="150000"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,10,0">
+                        <TextBlock Text="Ciudad / Zona:" FontSize="12"/>
+                        <TextBox x:Name="TxtCiudad" Watermark="Águilas"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,10,0">
+                        <TextBlock Text="Habitaciones:" FontSize="12"/>
+                        <TextBox x:Name="TxtHabitaciones" Watermark="3"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Spacing="10">
+                        <Button Content="Limpiar" Click="OnLimpiarFormularioClick" Background="#C92727" Foreground="White"/>
+                        <Button Content="Guardar" Click="OnGuardarInmuebleClick" Background="#2563EB" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>

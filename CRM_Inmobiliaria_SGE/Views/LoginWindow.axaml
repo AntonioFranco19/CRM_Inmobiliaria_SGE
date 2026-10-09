@@ -6,7 +6,7 @@
         WindowStartupLocation="CenterScreen"
         CanResize="False">
 
-    <Border Padding="25" Background="#F1F5F9">
+    <Border Padding="25" Background="#A0CCF8">
         <StackPanel Spacing="14" VerticalAlignment="Center">
             <TextBlock Text="InmoCRM" 
                        FontSize="26" 
@@ -21,12 +21,12 @@
 
             <StackPanel Spacing="4">
                 <TextBlock Text="Usuario:" FontWeight="Medium"/>
-                <TextBox x:Name="TxtUsuario" Watermark="admin / agente"/>
+                <TextBox x:Name="TxtUsuario" PlaceholderText="admin / agente"/>
             </StackPanel>
 
             <StackPanel Spacing="4">
                 <TextBlock Text="Contraseña:" FontWeight="Medium"/>
-                <TextBox x:Name="TxtPassword" PasswordChar="•" Watermark="Contraseña"/>
+                <TextBox x:Name="TxtPassword" PasswordChar="•" PlaceholderText="Contraseña"/>
             </StackPanel>
 
             <TextBlock x:Name="TxtError" 

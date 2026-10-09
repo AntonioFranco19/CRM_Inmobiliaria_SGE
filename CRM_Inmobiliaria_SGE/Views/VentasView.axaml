@@ -1,0 +1,78 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="CRM_Inmobiliaria_SGE.Views.VentasView">
+
+    <Grid RowDefinitions="Auto,*,Auto" Margin="10">
+        <!-- Cabecera -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,15">
+            <TextBlock Grid.Column="0" Text="Registro de Operaciones y Ventas" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+            <Button Grid.Column="2" Content="+ Registrar Cierre de Operación" Click="OnNuevaOperacionClick" Background="#16A34A" Foreground="White" FontWeight="Bold"/>
+        </Grid>
+
+        <!-- Listado -->
+        <Border Grid.Row="1" Background="White" CornerRadius="6" BorderBrush="#E2E8F0" BorderThickness="1">
+            <ListBox x:Name="ListaOperaciones">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" BorderBrush="#E2E8F0" BorderThickness="0,0,0,1">
+                            <Grid ColumnDefinitions="100,2*,*,*,Auto">
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Operacion.Codigo}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Operacion.FechaCierre, StringFormat='{}{0:dd/MM/yyyy}'}" FontSize="11" Foreground="#64748B"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding InmuebleTexto}" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding ClienteTexto}" FontSize="12" Foreground="#475569"/>
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Operacion.Tipo}" FontWeight="Medium" Foreground="#2563EB"/>
+                                    <TextBlock Text="{Binding Operacion.ImporteFinal, StringFormat='Total: {0:N0} €'}" FontSize="12"/>
+                                </StackPanel>
+                                <TextBlock Grid.Column="3" Text="{Binding Operacion.ComisionHonorarios, StringFormat='Honorarios: {0:N0} €'}" 
+                                           FontWeight="Bold" Foreground="#16A34A" VerticalAlignment="Center"/>
+                                <Button Grid.Column="4" Content="Eliminar" Click="OnEliminarOperacionClick" Background="#EF4444" Foreground="White" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <!-- Formulario Alta de Operación -->
+        <Border Grid.Row="2" Background="#FFB7E0F8" Margin="0,15,0,0" Padding="15" CornerRadius="6" BorderBrush="#CBD5E1" BorderThickness="1">
+            <StackPanel Spacing="10">
+                <TextBlock Text="Formalizar Nueva Operación (Compraventa / Arrendamiento)" FontWeight="Bold" FontSize="16"/>
+
+                <Grid ColumnDefinitions="2*,2*,*,*,*" RowDefinitions="Auto" Margin="0,5,0,0">
+                    <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                        <TextBlock Text="Inmueble Disponible:" FontSize="12"/>
+                        <ComboBox x:Name="CmbInmueblesVenta" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="0,0,10,0">
+                        <TextBlock Text="Cliente Comprador/Inquilino:" FontSize="12"/>
+                        <ComboBox x:Name="CmbClientesVenta" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2" Margin="0,0,10,0">
+                        <TextBlock Text="Tipo Operación:" FontSize="12"/>
+                        <ComboBox x:Name="CmbTipoOperacion" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="3" Margin="0,0,10,0">
+                        <TextBlock Text="Precio Cierre (€):" FontSize="12"/>
+                        <TextBox x:Name="TxtPrecioCierre" Watermark="200000"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="4">
+                        <TextBlock Text="Honorarios / Comisión (€):" FontSize="12"/>
+                        <TextBox x:Name="TxtComision" Watermark="6000"/>
+                    </StackPanel>
+                </Grid>
+
+                <Button Content="Registrar Operación y Actualizar Inmueble" Click="OnGuardarOperacionClick" 
+                        Background="#2563EB" Foreground="White" FontWeight="Bold" HorizontalAlignment="Right" Margin="0,5,0,0"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

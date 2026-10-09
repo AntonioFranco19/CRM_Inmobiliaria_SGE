@@ -25,26 +25,33 @@ public static class DataManager
         FilePath = Path.Combine(appFolder, "inmocrm_data.json");
     }
 
-    public static async Task CargarDatosAsync()
+    public static void CargarDatos()
+{
+    try
     {
         if (File.Exists(FilePath))
         {
-            var json = await File.ReadAllTextAsync(FilePath);
+            var json = File.ReadAllText(FilePath);
             Datos = JsonSerializer.Deserialize<DatabaseJson>(json, JsonOptions) ?? GenerarDatosIniciales();
         }
         else
         {
             Datos = GenerarDatosIniciales();
-            await GuardarDatosAsync();
+            GuardarDatos();
         }
     }
-
-    public static async Task GuardarDatosAsync()
+    catch
     {
-        var json = JsonSerializer.Serialize(Datos, JsonOptions);
-        await File.WriteAllTextAsync(FilePath, json);
+        // Si el archivo está corrupto o da fallo de I/O, arrancamos con datos base limpios
+        Datos = GenerarDatosIniciales();
     }
+}
 
+public static void GuardarDatos()
+{
+    var json = JsonSerializer.Serialize(Datos, JsonOptions);
+    File.WriteAllText(FilePath, json);
+}
     private static DatabaseJson GenerarDatosIniciales()
     {
         return new DatabaseJson

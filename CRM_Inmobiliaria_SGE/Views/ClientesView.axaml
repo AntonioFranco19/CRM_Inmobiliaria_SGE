@@ -1,0 +1,124 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="CRM_Inmobiliaria_SGE.Views.ClientesView">
+
+    <Grid RowDefinitions="Auto,*,Auto" Margin="10">
+        
+        <!-- Barra superior: Título y Buscador -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto,Auto" Margin="0,0,0,15">
+            <TextBlock Grid.Column="0" Text="Cartera de Clientes" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+            
+            <TextBox x:Name="TxtBuscarCliente" Grid.Column="1" Margin="20,0,10,0" 
+                     Watermark="Buscar por nombre, apellidos, NIF o teléfono..." 
+                     KeyUp="OnBuscarClienteKeyUp"/>
+            
+            <Button Grid.Column="2" Content="Buscar" Click="OnBuscarClienteClick" Margin="0,0,10,0"/>
+            <Button Grid.Column="3" Content="+ Nuevo Cliente" Click="OnNuevoClienteClick" Background="#16A34A" Foreground="White" FontWeight="Bold"/>
+        </Grid>
+
+        <!-- Listado de Clientes -->
+        <Border Grid.Row="1" Background="White" CornerRadius="6" BorderBrush="#E2E8F0" BorderThickness="1">
+            <ListBox x:Name="ListaClientes" SelectionChanged="OnClienteSeleccionadoChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" BorderBrush="#E2E8F0" BorderThickness="0,0,0,1">
+                            <Grid ColumnDefinitions="100,2*,*,*,Auto">
+                                <!-- NIF -->
+                                <TextBlock Grid.Column="0" Text="{Binding Nif}" FontWeight="Bold" VerticalAlignment="Center"/>
+                                
+                                <!-- Datos personales -->
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock FontWeight="SemiBold">
+                                        <TextBlock.Text>
+                                            <MultiBinding StringFormat="{}{0} {1}">
+                                                <Binding Path="Nombre"/>
+                                                <Binding Path="Apellidos"/>
+                                            </MultiBinding>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Email}" FontSize="12" Foreground="#64748B"/>
+                                </StackPanel>
+
+                                <!-- Contacto -->
+                                <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Telefono}" FontWeight="Medium"/>
+                                    <TextBlock Text="{Binding ZonaInteres, StringFormat='Zona: {0}'}" FontSize="12" Foreground="#475569"/>
+                                </StackPanel>
+
+                                <!-- Demanda / Presupuesto -->
+                                <StackPanel Grid.Column="3" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding TipoInteres, StringFormat='Busca: {0}'}" FontSize="12" Foreground="#2563EB"/>
+                                    <TextBlock Text="{Binding PresupuestoMaximo, StringFormat='Máx: {0:N0} €'}" FontWeight="Bold" Foreground="#0F172A"/>
+                                </StackPanel>
+
+                                <!-- Acciones -->
+                                <Button Grid.Column="4" Content="Eliminar" Click="OnEliminarClienteClick" 
+                                        Background="#EF4444" Foreground="White" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <!-- Formulario: Alta / Edición de Cliente y Preferencias -->
+        <Border Grid.Row="2" Background="#FFB7E0F8" Margin="0,15,0,0" Padding="15" CornerRadius="6" BorderBrush="#CBD5E1" BorderThickness="1">
+            <StackPanel Spacing="10">
+                <TextBlock x:Name="TxtTituloFormulario" Text="Añadir / Editar Cliente" FontWeight="Bold" FontSize="16"/>
+
+                <Grid ColumnDefinitions="*,2*,2*,*" RowDefinitions="Auto,Auto" Margin="0,5,0,0">
+                    <!-- Fila 1: Datos identificativos -->
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,10,10">
+                        <TextBlock Text="NIF / DNI:" FontSize="12"/>
+                        <TextBox x:Name="TxtNif" Watermark="12345678Z"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,10,10">
+                        <TextBlock Text="Nombre:" FontSize="12"/>
+                        <TextBox x:Name="TxtNombre" Watermark="Nombre..."/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="2" Margin="0,0,10,10">
+                        <TextBlock Text="Apellidos:" FontSize="12"/>
+                        <TextBox x:Name="TxtApellidos" Watermark="Apellidos..."/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="3" Margin="0,0,0,10">
+                        <TextBlock Text="Teléfono:" FontSize="12"/>
+                        <TextBox x:Name="TxtTelefono" Watermark="600000000"/>
+                    </StackPanel>
+
+                    <!-- Fila 2: Preferencias inmobiliarias -->
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,10,0">
+                        <TextBlock Text="Email:" FontSize="12"/>
+                        <TextBox x:Name="TxtEmail" Watermark="cliente@email.com"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,0,10,0">
+                        <TextBlock Text="Tipo Vivienda Deseada:" FontSize="12"/>
+                        <ComboBox x:Name="CmbTipoInteres" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,10,0">
+                        <Grid ColumnDefinitions="*,*">
+                            <StackPanel Grid.Column="0" Margin="0,0,5,0">
+                                <TextBlock Text="Presupuesto Máx (€):" FontSize="12"/>
+                                <TextBox x:Name="TxtPresupuesto" Watermark="200000"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="5,0,0,0">
+                                <TextBlock Text="Zona de Interés:" FontSize="12"/>
+                                <TextBox x:Name="TxtZonaInteres" Watermark="Centro, Playa..."/>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Spacing="10">
+                        <Button Content="Limpiar" Click="OnLimpiarFormularioClick" Background="#C92727" Foreground="White"/>
+                        <Button Content="Guardar" Click="OnGuardarClienteClick" Background="#2563EB" Foreground="White" FontWeight="Bold"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>

@@ -1,9 +1,11 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using InmoCRM.Data;
-using InmoCRM.Models.Enums;
+using Avalonia.Input;
+using CRM_Inmobiliaria_SGE.Data;
+using CRM_Inmobiliaria_SGE.Models;
+using CRM_Inmobiliaria_SGE.Views;
 
-namespace InmoCRM.Views;
+namespace CRM_Inmobiliaria_SGE;
 
 public partial class MainWindow : Window
 {
@@ -18,59 +20,68 @@ public partial class MainWindow : Window
         var usuario = DataManager.UsuarioActual;
         if (usuario != null)
         {
-            TxtInfoUsuario.Text = $"{usuario.NombreCompleto}\nRol: {usuario.Rol}";
+            var txtInfoUsuario = this.FindControl<TextBlock>("TxtInfoUsuario");
+            if (txtInfoUsuario != null)
+            {
+                txtInfoUsuario.Text = $"{usuario.NombreCompleto}\nRol: {usuario.Rol}";
+            }
 
             bool esAdmin = usuario.Rol == RolUsuario.Administrador;
-            BtnFacturacion.IsVisible = esAdmin;
-            BtnInformes.IsVisible = esAdmin;
-            BtnUsuarios.IsVisible = esAdmin;
+
+            var btnFacturacion = this.FindControl<Button>("BtnFacturacion");
+            if (btnFacturacion != null) btnFacturacion.IsVisible = esAdmin;
+
+            var btnInformes = this.FindControl<Button>("BtnInformes");
+            if (btnInformes != null) btnInformes.IsVisible = esAdmin;
+
+            var btnUsuarios = this.FindControl<Button>("BtnUsuarios");
+            if (btnUsuarios != null) btnUsuarios.IsVisible = esAdmin;
         }
     }
 
-    // Manejadores de menú vinculados en el XAML
     private void OnMenuInmueblesClick(object? sender, RoutedEventArgs e)
     {
-        // ContenedorModulo.Content = new InmueblesView();
+        ContenedorModulo.Content = new InmueblesView();
     }
 
     private void OnMenuClientesClick(object? sender, RoutedEventArgs e)
     {
-        // ContenedorModulo.Content = new ClientesView();
+        ContenedorModulo.Content = new ClientesView();
     }
 
     private void OnMenuVisitasClick(object? sender, RoutedEventArgs e)
     {
-        // ContenedorModulo.Content = new VisitasView();
+        ContenedorModulo.Content = new VisitasView();
     }
 
     private void OnMenuMatchingClick(object? sender, RoutedEventArgs e)
     {
-        // ContenedorModulo.Content = new MatchingView();
+        ContenedorModulo.Content = new MatchingView();
     }
 
     private void OnMenuVentasClick(object? sender, RoutedEventArgs e)
     {
-        // ContenedorModulo.Content = new VentasView();
+        ContenedorModulo.Content = new VentasView();
     }
 
     private void OnMenuProveedoresClick(object? sender, RoutedEventArgs e)
     {
-        // ContenedorModulo.Content = new ProveedoresView();
+        ContenedorModulo.Content = new ProveedoresView();
     }
 
     private void OnMenuFacturacionClick(object? sender, RoutedEventArgs e)
     {
-        // ContenedorModulo.Content = new FacturacionView();
+        ContenedorModulo.Content = new FacturacionView();
     }
 
     private void OnMenuInformesClick(object? sender, RoutedEventArgs e)
     {
-        // ContenedorModulo.Content = new InformesView();
+        ContenedorModulo.Content = new InformesView();
     }
 
     private void OnMenuUsuariosClick(object? sender, RoutedEventArgs e)
     {
-        // ContenedorModulo.Content = new UsuariosView();
+        ContenedorModulo.Content = new UsuariosView();
     }
 
     private void OnCerrarSesionClick(object? sender, RoutedEventArgs e)

@@ -13,13 +13,15 @@ public partial class App : Application
         AvaloniaXamlLoader.Load(this);
     }
 
-    public override async void OnFrameworkInitializationCompleted()
+    public override void OnFrameworkInitializationCompleted()
     {
-        await DataManager.CargarDatosAsync();
+        DataManager.CargarDatos();
 
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new LoginWindow();
+            var login = new LoginWindow();
+            desktop.MainWindow = login;
+            login.Show();
         }
 
         base.OnFrameworkInitializationCompleted();

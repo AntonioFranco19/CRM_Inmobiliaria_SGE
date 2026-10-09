@@ -1,0 +1,99 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="CRM_Inmobiliaria_SGE.Views.VisitasView">
+
+    <Grid RowDefinitions="Auto,*,Auto" Margin="10">
+        
+        <!-- Cabecera -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Margin="0,0,0,15">
+            <TextBlock Grid.Column="0" Text="Agenda de Visitas Inmobiliarias" FontSize="22" FontWeight="Bold" VerticalAlignment="Center"/>
+            <Button Grid.Column="2" Content="+ Agendar Visita" Click="OnNuevaVisitaClick" Background="#16A34A" Foreground="White" FontWeight="Bold"/>
+        </Grid>
+
+        <!-- Listado de Visitas -->
+        <Border Grid.Row="1" Background="White" CornerRadius="6" BorderBrush="#E2E8F0" BorderThickness="1">
+            <ListBox x:Name="ListaVisitas" SelectionChanged="OnVisitaSeleccionadaChanged">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" BorderBrush="#E2E8F0" BorderThickness="0,0,0,1">
+                            <Grid ColumnDefinitions="140,2*,2*,120,Auto">
+                                <!-- Fecha y Hora -->
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding FechaHora, StringFormat='{}{0:dd/MM/yyyy HH:mm}'}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding EstadoTexto}" FontSize="12" Foreground="{Binding ColorEstado}"/>
+                                </StackPanel>
+
+                                <!-- Inmueble -->
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="5,0">
+                                    <TextBlock Text="{Binding InmuebleTexto}" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding InmuebleDireccion}" FontSize="12" Foreground="#64748B"/>
+                                </StackPanel>
+
+                                <!-- Cliente -->
+                                <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="5,0">
+                                    <TextBlock Text="{Binding ClienteTexto}" FontWeight="Medium"/>
+                                    <TextBlock Text="{Binding ComentariosCliente}" FontSize="12" Foreground="#475569" TextTrimming="CharacterEllipsis"/>
+                                </StackPanel>
+
+                                <!-- Valoración -->
+                                <TextBlock Grid.Column="3" Text="{Binding InteresTexto}" FontWeight="Bold" Foreground="#D97706" VerticalAlignment="Center"/>
+
+                                <!-- Acción -->
+                                <Button Grid.Column="4" Content="Eliminar" Click="OnEliminarVisitaClick" Background="#EF4444" Foreground="White" VerticalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <!-- Formulario para Agendar / Editar Visita -->
+        <Border Grid.Row="2" Background="#FFB7E0F8" Margin="0,15,0,0" Padding="15" CornerRadius="6" BorderBrush="#CBD5E1" BorderThickness="1">
+            <StackPanel Spacing="10">
+                <TextBlock x:Name="TxtTituloFormulario" Text="Agendar / Editar Visita" FontWeight="Bold" FontSize="16"/>
+
+                <Grid ColumnDefinitions="2*,2*,*,*" RowDefinitions="Auto,Auto" Margin="0,5,0,0">
+                    <!-- Fila 1: Selección de Entidades -->
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,10,10">
+                        <TextBlock Text="Inmueble:" FontSize="12"/>
+                        <ComboBox x:Name="CmbInmuebles" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,10,10">
+                        <TextBlock Text="Cliente Interesado:" FontSize="12"/>
+                        <ComboBox x:Name="CmbClientes" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="2" Margin="0,0,10,10">
+                        <TextBlock Text="Fecha y Hora (dd/mm/aaaa hh:mm):" FontSize="12"/>
+                        <TextBox x:Name="TxtFechaHora" Watermark="10/10/2026 17:00"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="3" Margin="0,0,0,10">
+                        <TextBlock Text="Interés (1 a 5):" FontSize="12"/>
+                        <ComboBox x:Name="CmbInteres" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <!-- Fila 2: Notas y Estado -->
+                    <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,10,0">
+                        <TextBlock Text="Feedback / Comentarios de la visita:" FontSize="12"/>
+                        <TextBox x:Name="TxtComentarios" Watermark="Le gustó la terraza, pide rebaja..."/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="2" VerticalAlignment="Center">
+                        <TextBlock Text="Estado:" FontSize="12"/>
+                        <ComboBox x:Name="CmbEstado" HorizontalAlignment="Stretch"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Grid.Column="3" VerticalAlignment="Center">
+                        <TextBlock Text="Acciones:" FontSize="12"/>
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <Button Content="Guardar" Click="OnGuardarVisitaClick" Background="#2563EB" Foreground="White"/>
+                            <Button Content="Limpiar" Click="OnLimpiarFormularioClick" Background="#C92727" Foreground="White"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

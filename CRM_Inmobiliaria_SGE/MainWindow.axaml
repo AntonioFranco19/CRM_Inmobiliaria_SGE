@@ -1,38 +1,80 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="InmoCRM - Panel Principal"
-        Width="1100" Height="700"
-        x:Class="InmoCRM.MainWindow"
+        x:Class="CRM_Inmobiliaria_SGE.MainWindow"
+        Title="InmoCRM - Panel de Gestión Inmobiliaria"
+        Width="1200" Height="780"
+        MinHeight="600" MinWidth="950"
         WindowStartupLocation="CenterScreen">
 
-    <Grid ColumnDefinitions="220,*">
+    <!-- Estilos específicos para los botones de navegación -->
+    <Window.Styles>
+        <Style Selector="Button.menu-btn">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Height" Value="38"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#E2F8F8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="CornerRadius" Value="6"/>
+        </Style>
+        <Style Selector="Button.menu-btn:pointerover">
+            <Setter Property="Background" Value="#334155"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+        </Style>
+        <Style Selector="Button.menu-btn.activo">
+            <Setter Property="Background" Value="#2563EB"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid ColumnDefinitions="240,*">
         <!-- Menú Lateral -->
-        <Border Grid.Column="0" Background="#1E293B" Padding="15">
+        <Border Grid.Column="0" Background="#0F172A" Padding="15">
             <DockPanel LastChildFill="False">
-                <StackPanel DockPanel.Dock="Top" Spacing="10">
-                    <TextBlock Text="InmoCRM" Foreground="White" FontSize="20" FontWeight="Bold"/>
-                    <TextBlock x:Name="TxtInfoUsuario" Foreground="#94A3B8" FontSize="12" Margin="0,0,0,15"/>
+                
+                <StackPanel DockPanel.Dock="Top" Spacing="6">
+                    <!-- Cabecera de la App -->
+                    <StackPanel Spacing="2" Margin="0,5,0,15">
+                        <TextBlock Text="🏢 InmoCRM" Foreground="White" FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="ERP Inmobiliario a Medida" Foreground="#64748B" FontSize="11"/>
+                    </StackPanel>
 
-                    <Button Content="🏡 Inmuebles" Click="OnMenuInmueblesClick" HorizontalAlignment="Stretch" Height="36"/>
-                    <Button Content="👥 Clientes" Click="OnMenuClientesClick" HorizontalAlignment="Stretch" Height="36"/>
-                    <Button Content="📅 Visitas" Click="OnMenuVisitasClick" HorizontalAlignment="Stretch" Height="36"/>
-                    <Button Content="🎯 Cruce / Matching" Click="OnMenuMatchingClick" HorizontalAlignment="Stretch" Height="36"/>
-                    <Button Content="🤝 Ventas / Operaciones" Click="OnMenuVentasClick" HorizontalAlignment="Stretch" Height="36"/>
-                    <Button Content="🚚 Proveedores" Click="OnMenuProveedoresClick" HorizontalAlignment="Stretch" Height="36"/>
+                    <!-- Ficha del usuario conectado -->
+                    <Border Background="#1E293B" CornerRadius="6" Padding="10" Margin="0,0,0,15">
+                        <StackPanel Spacing="2">
+                            <TextBlock x:Name="TxtNombreUsuario" Text="Usuario Activo" Foreground="#F8FAFC" FontWeight="SemiBold" FontSize="13"/>
+                            <TextBlock x:Name="TxtRolUsuario" Text="Rol: Agente" Foreground="#38BDF8" FontSize="11" FontWeight="Medium"/>
+                        </StackPanel>
+                    </Border>
 
-                    <!-- Botones restringidos a Administrador -->
-                    <Button x:Name="BtnFacturacion" Content="🧾 Facturación" Click="OnMenuFacturacionClick" HorizontalAlignment="Stretch" Height="36"/>
-                    <Button x:Name="BtnInformes" Content="📊 Informes" Click="OnMenuInformesClick" HorizontalAlignment="Stretch" Height="36"/>
-                    <Button x:Name="BtnUsuarios" Content="⚙️ Usuarios" Click="OnMenuUsuariosClick" HorizontalAlignment="Stretch" Height="36"/>
+                    <TextBlock Text="OPERACIONES Y CLIENTELA" Foreground="#475569" FontSize="10" FontWeight="Bold" Margin="4,0,0,4"/>
+
+                    <!-- Módulos Operativos -->
+                    <Button x:Name="BtnMenuInmuebles" Classes="menu-btn" Content="🏡 Inmuebles (Catálogo)" Click="OnMenuInmueblesClick"/>
+                    <Button x:Name="BtnMenuClientes" Classes="menu-btn" Content="👥 Cartera de Clientes" Click="OnMenuClientesClick"/>
+                    <Button x:Name="BtnMenuVisitas" Classes="menu-btn" Content="📅 Agenda de Visitas" Click="OnMenuVisitasClick"/>
+                    <Button x:Name="BtnMenuMatching" Classes="menu-btn" Content="🎯 Cruce / Matching" Click="OnMenuMatchingClick"/>
+                    <Button x:Name="BtnMenuVentas" Classes="menu-btn" Content="🤝 Cierre de Operaciones" Click="OnMenuVentasClick"/>
+                    <Button x:Name="BtnMenuProveedores" Classes="menu-btn" Content="🚚 Proveedores Externos" Click="OnMenuProveedoresClick"/>
+
+                    <!-- Módulos Administrativos (restringidos por rol) -->
+                    <TextBlock x:Name="TxtSeccionAdmin" Text="ADMINISTRACIÓN Y CONTROL" Foreground="#475569" FontSize="10" FontWeight="Bold" Margin="4,12,0,4"/>
+                    <Button x:Name="BtnMenuFacturacion" Classes="menu-btn" Content="🧾 Facturación (IVA/Base)" Click="OnMenuFacturacionClick"/>
+                    <Button x:Name="BtnMenuInformes" Classes="menu-btn" Content="📊 Informes y Métricas" Click="OnMenuInformesClick"/>
+                    <Button x:Name="BtnMenuUsuarios" Classes="menu-btn" Content="⚙️ Gestión de Usuarios" Click="OnMenuUsuariosClick"/>
                 </StackPanel>
 
-                <Button DockPanel.Dock="Bottom" Content="Cerrar Sesión" Click="OnCerrarSesionClick" 
-                        Background="#EF4444" Foreground="White" HorizontalAlignment="Stretch" Height="36"/>
+                <!-- Botón de Cerrar Sesión fijo abajo -->
+                <Button DockPanel.Dock="Bottom" Content="🚪 Cerrar Sesión" Click="OnCerrarSesionClick" 
+                        Background="#DC2626" Foreground="White" FontWeight="Bold"
+                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Height="36" CornerRadius="6"/>
             </DockPanel>
         </Border>
 
-        <!-- Área de contenido dinámico -->
-        <Border Grid.Column="1" Background="#F8FAFC" Padding="20">
+        <!-- Contenedor Dinámico de Módulos -->
+        <Border Grid.Column="1" Background="#8BC2F8" Padding="15">
             <ContentControl x:Name="ContenedorModulo"/>
         </Border>
     </Grid>

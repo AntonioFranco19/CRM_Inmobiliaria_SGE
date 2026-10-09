@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Avalonia: CRM_Inmobiliaria_SGE",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/CRM_Inmobiliaria_SGE.csproj"
+        }
+    ]
+}
