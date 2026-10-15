@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CRM_Inmobiliaria_SGE")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+87e8ca51cdfe4b6e95f8f59b8a0fdea52bd095cc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+542b5cd310775e5237327bc9d1219016a2d65d3b")]
 [assembly: System.Reflection.AssemblyProductAttribute("CRM_Inmobiliaria_SGE")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CRM_Inmobiliaria_SGE")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

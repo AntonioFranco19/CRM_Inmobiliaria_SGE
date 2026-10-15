@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Xk2lDTAdUZc=",
+  "dgSpecHash": "fgcRxBhnwhc=",
   "success": true,
-  "projectFilePath": "d:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE.csproj",
+  "projectFilePath": "D:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\afran\\.nuget\\packages\\avalonia\\12.1.3\\avalonia.12.1.3.nupkg.sha512",
     "C:\\Users\\afran\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.27548.20260419\\avalonia.angle.windows.natives.2.1.27548.20260419.nupkg.sha512",

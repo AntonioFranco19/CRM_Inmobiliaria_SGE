@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE.csproj": {}
+    "D:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE.csproj": {}
   },
   "projects": {
-    "d:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE.csproj": {
+    "D:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE.csproj",
+        "projectUniqueName": "D:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE.csproj",
         "projectName": "CRM_Inmobiliaria_SGE",
-        "projectPath": "d:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE.csproj",
+        "projectPath": "D:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE.csproj",
         "packagesPath": "C:\\Users\\afran\\.nuget\\packages\\",
-        "outputPath": "d:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\obj\\",
+        "outputPath": "D:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

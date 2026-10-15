@@ -1,0 +1,4 @@
+D:\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\2º\Sistemas de gestión empresarial\CRM_Inmobiliaria_SGE\CRM_Inmobiliaria_SGE\Publicacion\CRM_Inmobiliaria_SGE.pdb
+D:\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\2º\Sistemas de gestión empresarial\CRM_Inmobiliaria_SGE\CRM_Inmobiliaria_SGE\Publicacion\libHarfBuzzSharp.pdb
+D:\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\2º\Sistemas de gestión empresarial\CRM_Inmobiliaria_SGE\CRM_Inmobiliaria_SGE\Publicacion\libSkiaSharp.pdb
+D:\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\2º\Sistemas de gestión empresarial\CRM_Inmobiliaria_SGE\CRM_Inmobiliaria_SGE\Publicacion\CRM_Inmobiliaria_SGE.exe
