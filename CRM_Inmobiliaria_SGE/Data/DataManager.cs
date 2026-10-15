@@ -17,41 +17,38 @@ public static class DataManager
 
     static DataManager()
     {
-        var appFolder = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-            "InmoCRM"
-        );
+        var appFolder = AppContext.BaseDirectory;
         Directory.CreateDirectory(appFolder);
         FilePath = Path.Combine(appFolder, "inmocrm_data.json");
     }
 
     public static void CargarDatos()
-{
-    try
     {
-        if (File.Exists(FilePath))
+        try
         {
-            var json = File.ReadAllText(FilePath);
-            Datos = JsonSerializer.Deserialize<DatabaseJson>(json, JsonOptions) ?? GenerarDatosIniciales();
+            if (File.Exists(FilePath))
+            {
+                var json = File.ReadAllText(FilePath);
+                Datos = JsonSerializer.Deserialize<DatabaseJson>(json, JsonOptions) ?? GenerarDatosIniciales();
+            }
+            else
+            {
+                Datos = GenerarDatosIniciales();
+                GuardarDatos();
+            }
         }
-        else
+        catch
         {
+            // Si el archivo está corrupto o da fallo de I/O, arrancamos con datos base limpios
             Datos = GenerarDatosIniciales();
-            GuardarDatos();
         }
     }
-    catch
-    {
-        // Si el archivo está corrupto o da fallo de I/O, arrancamos con datos base limpios
-        Datos = GenerarDatosIniciales();
-    }
-}
 
-public static void GuardarDatos()
-{
-    var json = JsonSerializer.Serialize(Datos, JsonOptions);
-    File.WriteAllText(FilePath, json);
-}
+    public static void GuardarDatos()
+    {
+        var json = JsonSerializer.Serialize(Datos, JsonOptions);
+        File.WriteAllText(FilePath, json);
+    }
     private static DatabaseJson GenerarDatosIniciales()
     {
         return new DatabaseJson

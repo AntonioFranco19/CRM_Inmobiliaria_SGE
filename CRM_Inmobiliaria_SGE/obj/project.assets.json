@@ -4371,7 +4371,7 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\1821195\\.nuget\\packages\\": {},
+    "C:\\Users\\afran\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
@@ -4380,14 +4380,14 @@
       "projectUniqueName": "D:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE.csproj",
       "projectName": "CRM_Inmobiliaria_SGE",
       "projectPath": "D:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE.csproj",
-      "packagesPath": "C:\\Users\\1821195\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\afran\\.nuget\\packages\\",
       "outputPath": "D:\\DESARROLLO DE APLICACIONES MULTIPLATAFORMA\\2º\\Sistemas de gestión empresarial\\CRM_Inmobiliaria_SGE\\CRM_Inmobiliaria_SGE\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\1821195\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\afran\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],

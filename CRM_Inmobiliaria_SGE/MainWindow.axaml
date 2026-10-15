@@ -18,10 +18,10 @@
             <Setter Property="Padding" Value="12,0"/>
             <Setter Property="CornerRadius" Value="6"/>
         </Style>
-        <Style Selector="Button.menu-btn:pointerover">
-            <Setter Property="Background" Value="#334155"/>
-            <Setter Property="Foreground" Value="#FFFFFF"/>
-        </Style>
+        <Style Selector="Button.menu-btn:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#475569"/>
+        <Setter Property="TextBlock.Foreground" Value="#FFFFFF"/>
+    </Style>
         <Style Selector="Button.menu-btn.activo">
             <Setter Property="Background" Value="#2563EB"/>
             <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -37,7 +37,7 @@
                 <StackPanel DockPanel.Dock="Top" Spacing="6">
                     <!-- Cabecera de la App -->
                     <StackPanel Spacing="2" Margin="0,5,0,15">
-                        <TextBlock Text="🏢 InmoCRM" Foreground="White" FontSize="20" FontWeight="Bold"/>
+                        <TextBlock Text="InmoCRM" Foreground="White" FontSize="20" FontWeight="Bold"/>
                         <TextBlock Text="ERP Inmobiliario a Medida" Foreground="#64748B" FontSize="11"/>
                     </StackPanel>
 
@@ -52,22 +52,22 @@
                     <TextBlock Text="OPERACIONES Y CLIENTELA" Foreground="#475569" FontSize="10" FontWeight="Bold" Margin="4,0,0,4"/>
 
                     <!-- Módulos Operativos -->
-                    <Button x:Name="BtnMenuInmuebles" Classes="menu-btn" Content="🏡 Inmuebles (Catálogo)" Click="OnMenuInmueblesClick"/>
-                    <Button x:Name="BtnMenuClientes" Classes="menu-btn" Content="👥 Cartera de Clientes" Click="OnMenuClientesClick"/>
-                    <Button x:Name="BtnMenuVisitas" Classes="menu-btn" Content="📅 Agenda de Visitas" Click="OnMenuVisitasClick"/>
-                    <Button x:Name="BtnMenuMatching" Classes="menu-btn" Content="🎯 Cruce / Matching" Click="OnMenuMatchingClick"/>
-                    <Button x:Name="BtnMenuVentas" Classes="menu-btn" Content="🤝 Cierre de Operaciones" Click="OnMenuVentasClick"/>
-                    <Button x:Name="BtnMenuProveedores" Classes="menu-btn" Content="🚚 Proveedores Externos" Click="OnMenuProveedoresClick"/>
+                    <Button x:Name="BtnMenuInmuebles" Classes="menu-btn" Content="Inmuebles (Catálogo)" Click="OnMenuInmueblesClick"/>
+                    <Button x:Name="BtnMenuClientes" Classes="menu-btn" Content="Cartera de Clientes" Click="OnMenuClientesClick"/>
+                    <Button x:Name="BtnMenuVisitas" Classes="menu-btn" Content="Agenda de Visitas" Click="OnMenuVisitasClick"/>
+                    <Button x:Name="BtnMenuMatching" Classes="menu-btn" Content="Cruce / Matching" Click="OnMenuMatchingClick"/>
+                    <Button x:Name="BtnMenuVentas" Classes="menu-btn" Content="Cierre de Operaciones" Click="OnMenuVentasClick"/>
+                    <Button x:Name="BtnMenuProveedores" Classes="menu-btn" Content="Proveedores Externos" Click="OnMenuProveedoresClick"/>
 
                     <!-- Módulos Administrativos (restringidos por rol) -->
                     <TextBlock x:Name="TxtSeccionAdmin" Text="ADMINISTRACIÓN Y CONTROL" Foreground="#475569" FontSize="10" FontWeight="Bold" Margin="4,12,0,4"/>
-                    <Button x:Name="BtnMenuFacturacion" Classes="menu-btn" Content="🧾 Facturación (IVA/Base)" Click="OnMenuFacturacionClick"/>
-                    <Button x:Name="BtnMenuInformes" Classes="menu-btn" Content="📊 Informes y Métricas" Click="OnMenuInformesClick"/>
-                    <Button x:Name="BtnMenuUsuarios" Classes="menu-btn" Content="⚙️ Gestión de Usuarios" Click="OnMenuUsuariosClick"/>
+                    <Button x:Name="BtnMenuFacturacion" Classes="menu-btn" Content="Facturación (IVA/Base)" Click="OnMenuFacturacionClick"/>
+                    <Button x:Name="BtnMenuInformes" Classes="menu-btn" Content="Informes y Métricas" Click="OnMenuInformesClick"/>
+                    <Button x:Name="BtnMenuUsuarios" Classes="menu-btn" Content="Gestión de Usuarios" Click="OnMenuUsuariosClick"/>
                 </StackPanel>
 
                 <!-- Botón de Cerrar Sesión fijo abajo -->
-                <Button DockPanel.Dock="Bottom" Content="🚪 Cerrar Sesión" Click="OnCerrarSesionClick" 
+                <Button DockPanel.Dock="Bottom" Content="Cerrar Sesión" Click="OnCerrarSesionClick" 
                         Background="#DC2626" Foreground="White" FontWeight="Bold"
                         HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Height="36" CornerRadius="6"/>
             </DockPanel>

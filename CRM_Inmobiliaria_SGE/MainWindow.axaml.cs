@@ -1,6 +1,5 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Input;
 using CRM_Inmobiliaria_SGE.Data;
 using CRM_Inmobiliaria_SGE.Models;
 using CRM_Inmobiliaria_SGE.Views;
@@ -13,31 +12,38 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         ConfigurarPermisosYUsuario();
+
+        // Carga por defecto el primer módulo operativo accesible para todos los roles
+        ContenedorModulo.Content = new InmueblesView();
     }
 
     private void ConfigurarPermisosYUsuario()
     {
         var usuario = DataManager.UsuarioActual;
-        if (usuario != null)
+        if (usuario == null) return;
+
+        // Mostrar datos en el encabezado del menú lateral
+        var txtInfoUsuario = this.FindControl<TextBlock>("TxtInfoUsuario");
+        if (txtInfoUsuario != null)
         {
-            var txtInfoUsuario = this.FindControl<TextBlock>("TxtInfoUsuario");
-            if (txtInfoUsuario != null)
-            {
-                txtInfoUsuario.Text = $"{usuario.NombreCompleto}\nRol: {usuario.Rol}";
-            }
+            txtInfoUsuario.Text = $"{usuario.NombreCompleto}\nRol: {usuario.Rol}";
+        }
 
-            bool esAdmin = usuario.Rol == RolUsuario.Administrador;
+        // Validación estricta del rol Administrador
+        bool esAdmin = usuario.Rol == RolUsuario.Administrador;
 
-            var btnFacturacion = this.FindControl<Button>("BtnFacturacion");
-            if (btnFacturacion != null) btnFacturacion.IsVisible = esAdmin;
-
-            var btnInformes = this.FindControl<Button>("BtnInformes");
-            if (btnInformes != null) btnInformes.IsVisible = esAdmin;
-
-            var btnUsuarios = this.FindControl<Button>("BtnUsuarios");
-            if (btnUsuarios != null) btnUsuarios.IsVisible = esAdmin;
+        // Control de visibilidad de botones restringidos
+        bool hayBotones = BtnMenuFacturacion != null && BtnMenuInformes != null && BtnMenuUsuarios != null && TxtSeccionAdmin != null;
+        if (hayBotones)
+        {
+            TxtSeccionAdmin.IsVisible = esAdmin;
+            BtnMenuFacturacion.IsVisible = esAdmin;
+            BtnMenuInformes.IsVisible = esAdmin;
+            BtnMenuUsuarios.IsVisible = esAdmin;
         }
     }
+
+    // --- MÓDULOS OPERATIVOS (Accesibles para Agentes y Administradores) ---
 
     private void OnMenuInmueblesClick(object? sender, RoutedEventArgs e)
     {
@@ -69,20 +75,27 @@ public partial class MainWindow : Window
         ContenedorModulo.Content = new ProveedoresView();
     }
 
+    // --- MÓDULOS DE ADMINISTRACIÓN (Blindados solo para Administrador) ---
+
     private void OnMenuFacturacionClick(object? sender, RoutedEventArgs e)
     {
+        if (DataManager.UsuarioActual?.Rol != RolUsuario.Administrador) return;
         ContenedorModulo.Content = new FacturacionView();
     }
 
     private void OnMenuInformesClick(object? sender, RoutedEventArgs e)
     {
+        if (DataManager.UsuarioActual?.Rol != RolUsuario.Administrador) return;
         ContenedorModulo.Content = new InformesView();
     }
 
     private void OnMenuUsuariosClick(object? sender, RoutedEventArgs e)
     {
+        if (DataManager.UsuarioActual?.Rol != RolUsuario.Administrador) return;
         ContenedorModulo.Content = new UsuariosView();
     }
+
+    // --- CIERRE DE SESIÓN ---
 
     private void OnCerrarSesionClick(object? sender, RoutedEventArgs e)
     {
